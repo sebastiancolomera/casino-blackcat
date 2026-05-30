@@ -1,0 +1,68 @@
+package vista;
+
+import javax.swing.*;
+import java.awt.*;
+import modelo.Resultado;
+import modelo.TipoApuesta;
+import controlador.RuletaController;
+import controlador.SessionController;
+
+public class VentanaRuleta {
+    private final JFrame frame = new JFrame("Ruleta - Casino Black Cat");
+    private final SessionController session;
+    private final RuletaController ruletaController;
+    private final JLabel lblNumero = new JLabel("Número: -");
+    private final JLabel lblResultado = new JLabel("Resultado: -");
+    private final JLabel lblBalance = new JLabel("Balance: 0");
+    private final JTextField txtMonto = new JTextField();
+    private final JComboBox<TipoApuesta> cmbTipo = new JComboBox<>(TipoApuesta.values());
+    private final JButton btnJugar = new JButton("Girar Ruleta");
+    private final JButton btnVolver = new JButton("Volver");
+
+    public VentanaRuleta(SessionController session, RuletaController ruletaController) {
+        this.session = session;
+        this.ruletaController = ruletaController;
+        frame.setSize(350, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setLayout(new GridLayout(7, 2, 5, 5));
+
+        frame.add(new JLabel("Tipo de apuesta:"));
+        frame.add(cmbTipo);
+        frame.add(new JLabel("Monto:"));
+        frame.add(txtMonto);
+        frame.add(btnJugar);
+        frame.add(btnVolver);
+        frame.add(new JLabel(""));
+        frame.add(new JLabel(""));
+        frame.add(new JLabel("Número obtenido:"));
+        frame.add(lblNumero);
+        frame.add(new JLabel("Resultado:"));
+        frame.add(lblResultado);
+        frame.add(new JLabel(""));
+        frame.add(lblBalance);
+
+        btnJugar.addActionListener(e -> jugar());
+        btnVolver.addActionListener(e -> volver());
+    }
+
+    private void jugar() {
+        int monto = Integer. parseInt(txtMonto.getText());
+        TipoApuesta tipo = (TipoApuesta) cmbTipo.getSelectedItem();
+
+        Resultado resultado = ruletaController.jugar(monto, tipo);
+
+        lblNumero.setText("Número obtenido: " + resultado.getNumero());
+        lblResultado.setText("Resultado: " + (resultado.isAcierto() ? "¡¡GANASTE!!" : "PERDISTE..."));
+        lblBalance.setText("Balance: " + ruletaController.getBalance());
+    }
+
+    private void volver() {
+        frame.dispose();
+        new VentanaMenu(session, ruletaController).mostrarVentana();
+    }
+
+    public void mostrarVentana() {
+        frame.setVisible(true);
+    }
+}
