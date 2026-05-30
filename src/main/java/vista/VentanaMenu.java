@@ -5,8 +5,9 @@ import java.awt.*;
 import modelo.Usuario;
 import controlador.SessionController;
 import controlador.RuletaController;
+import controlador.ResultadoController;
 
-public class VentanaSaludo {
+public class VentanaMenu {
     private final JFrame frame = new JFrame("Casino Black Cat - Menú Principal");
     private final JButton btnJugar = new JButton("Jugar Ruleta");
     private final JButton btnHistorial = new JButton("Ver Historial");
@@ -15,13 +16,13 @@ public class VentanaSaludo {
     private final SessionController session;
     private final RuletaController ruletaController;
 
-    public VentanaSaludo(SessionController session) {
+    public VentanaMenu(SessionController session) {
         this.session = session;
-        this.ruletaController = new RuletaController();
+        this.ruletaController = new RuletaController(10000,session);
         initUI();
     }
 
-    public VentanaSaludo(SessionController session, RuletaController ruletaController) {
+    public VentanaMenu(SessionController session, RuletaController ruletaController) {
         this.session = session;
         this.ruletaController = ruletaController;
         initUI();
@@ -58,6 +59,9 @@ public class VentanaSaludo {
     }
 
     private void verHistorial() {
+        frame.dispose();
+        ResultadoController resultadoController = new ResultadoController(session);
+        new VentanaHistorial(session, ruletaController, resultadoController).mostrarVentana();
         String stats = ruletaController.getEstadisticas();
         JOptionPane.showMessageDialog(frame, stats, "Estadísticas", JOptionPane.INFORMATION_MESSAGE);
     }

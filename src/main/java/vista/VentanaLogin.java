@@ -6,11 +6,11 @@ import controlador.SessionController;
 
 public class VentanaLogin {
     private final JFrame frame = new JFrame("Login - Casino Black Cat");
-    private final JLabel lblUsuario = new JLabel("Usuario:");
+    private final JLabel lblUsuario = new JLabel("Usuario");
     private final JTextField txtUsuario = new JTextField();
-    private final JLabel lblClave = new JLabel("Clave:");
+    private final JLabel lblClave = new JLabel("Clave");
     private final JPasswordField txtClave = new JPasswordField();
-    private final JButton btnIngresar = new JButton("Ingresar:");
+    private final JButton btnIngresar = new JButton("Ingresar");
     private final JButton btnRegistrar = new JButton("Registrarse");
     private final SessionController session;
 
@@ -55,7 +55,7 @@ public class VentanaLogin {
         if (usuario != null) {
             JOptionPane.showMessageDialog(frame, "¡Bienvenido, " + usuario.getNombre() + "!!");
             frame.dispose();
-            new VentanaSaludo(session).mostrarVentana();
+            new VentanaMenu(session).mostrarVentana();
         } else {
             JOptionPane.showMessageDialog(frame, "Credenciales incorrectas.", "Error", JOptionPane.ERROR_MESSAGE);
         }

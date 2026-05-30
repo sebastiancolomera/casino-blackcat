@@ -59,7 +59,7 @@ public class VentanaRuleta {
 
     private void volver() {
         frame.dispose();
-        new VentanaSaludo(session, ruletaController).mostrarVentana();
+        new VentanaMenu(session, ruletaController).mostrarVentana();
     }
 
     public void mostrarVentana() {
