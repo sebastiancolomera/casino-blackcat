@@ -44,17 +44,34 @@ public class VentanaRuleta {
 
         btnJugar.addActionListener(e -> jugar());
         btnVolver.addActionListener(e -> volver());
+        lblBalance.setText("Balance: " + ruletaController.getBalance());
     }
 
     private void jugar() {
-        int monto = Integer. parseInt(txtMonto.getText());
-        TipoApuesta tipo = (TipoApuesta) cmbTipo.getSelectedItem();
+        try {
+            int monto = Integer.parseInt(txtMonto.getText());
+            if (monto <= 0) {
+                JOptionPane.showMessageDialog(frame, "La apuesta debe ser mayor o igual a 0.",
+                        "Apuesta Inválida", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        Resultado resultado = ruletaController.jugar(monto, tipo);
+            if (monto > ruletaController.getBalance()) {
+                JOptionPane.showMessageDialog(frame, "Saldo insuficiente. Tu balance es: " + ruletaController.getBalance(),
+                        "Apuesta Inválida", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        lblNumero.setText("Número obtenido: " + resultado.getNumero());
-        lblResultado.setText("Resultado: " + (resultado.isAcierto() ? "¡¡GANASTE!!" : "PERDISTE..."));
-        lblBalance.setText("Balance: " + ruletaController.getBalance());
+            TipoApuesta tipo = (TipoApuesta) cmbTipo.getSelectedItem();
+            modelo.Resultado resultado = ruletaController.jugar(monto, tipo);
+
+            lblNumero.setText("Número obtenido: " + resultado.getNumero());
+            lblResultado.setText("Resultado: " + (resultado.isAcierto() ? "¡¡GANASTE!!" : "PERDISTE..."));
+            lblBalance.setText("Balance: " + ruletaController.getBalance());
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(frame, "Por favor, ingresa un monto válido.",
+                    "Entrada Inválida", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void volver() {

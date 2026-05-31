@@ -11,12 +11,6 @@ public class Usuario {
 
     private final List<Resultado> historial = new ArrayList<>();
 
-    public Usuario() {
-        this.username = "invitado";
-        this.password = "";
-        this.nombre = "invitado";
-    }
-
     public Usuario(String username, String password, String nombre) {
         this.username = username;
         this.password = password;
