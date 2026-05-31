@@ -11,6 +11,7 @@ public class VentanaMenu {
     private final JFrame frame = new JFrame("Casino Black Cat - Menú Principal");
     private final JButton btnJugar = new JButton("Jugar Ruleta");
     private final JButton btnHistorial = new JButton("Ver Historial");
+    private final JButton btnEstadisticas = new JButton("Estadísticas");
     private final JButton btnPerfil = new JButton("Perfil");
     private final JButton btnLogout = new JButton("Logout");
     private final SessionController session;
@@ -37,10 +38,11 @@ public class VentanaMenu {
         Usuario usuario = session.getUsuarioActual();
         String nombre = (usuario != null) ? usuario.getNombre() : "Invitado";
         JLabel mensaje = new JLabel("Bienvenido, " + nombre, SwingConstants.CENTER);
-        JPanel panelBotones = new JPanel(new java.awt.GridLayout(4, 1, 10, 10));
 
+        JPanel panelBotones = new JPanel(new java.awt.GridLayout(5, 1, 10, 10));
         panelBotones.add(btnJugar);
         panelBotones.add(btnHistorial);
+        panelBotones.add(btnEstadisticas);
         panelBotones.add(btnPerfil);
         panelBotones.add(btnLogout);
 
@@ -49,6 +51,7 @@ public class VentanaMenu {
 
         btnJugar.addActionListener(e -> abrirRuleta());
         btnHistorial.addActionListener(e -> verHistorial());
+        btnEstadisticas.addActionListener(e -> abrirEstadisticas());
         btnPerfil.addActionListener(e -> abrirPerfil());
         btnLogout.addActionListener(e -> logout());
     }
@@ -62,8 +65,12 @@ public class VentanaMenu {
         frame.dispose();
         ResultadoController resultadoController = new ResultadoController(session);
         new VentanaHistorial(session, ruletaController, resultadoController).mostrarVentana();
-        String stats = ruletaController.getEstadisticas();
-        JOptionPane.showMessageDialog(frame, stats, "Estadísticas", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void abrirEstadisticas() {
+        frame.dispose();
+        ResultadoController resultadoController = new ResultadoController(session);
+        new VentanaEstadisticas(session, ruletaController, resultadoController).mostrarVentana();
     }
 
     private void abrirPerfil() {

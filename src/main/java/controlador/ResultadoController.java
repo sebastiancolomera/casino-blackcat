@@ -17,4 +17,7 @@ public class ResultadoController {
         }
         return new ArrayList<>();
     }
+    public modelo.Estadisticas getEstadisticasUsuario() {
+        return new modelo.Estadisticas(getHistorialUsuario());
+    }
 }

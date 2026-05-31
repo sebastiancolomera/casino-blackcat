@@ -20,7 +20,7 @@ public class VentanaLogin {
     }
 
     private void configurarVentana() {
-        frame.setSize(300, 200);
+        frame.setSize(350, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new java.awt.GridLayout(4, 2, 5, 5));
 
@@ -53,7 +53,7 @@ public class VentanaLogin {
         Usuario usuario = session.login(u, p);
 
         if (usuario != null) {
-            JOptionPane.showMessageDialog(frame, "¡Bienvenido, " + usuario.getNombre() + "!!");
+            JOptionPane.showMessageDialog(frame, "¡¡Bienvenido, " + usuario.getNombre() + "!!");
             frame.dispose();
             new VentanaMenu(session).mostrarVentana();
         } else {
