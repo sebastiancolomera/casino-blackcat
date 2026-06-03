@@ -17,7 +17,8 @@ public class VentanaHistorial {
     private final RuletaController ruletaController;
     private final ResultadoController resultadoController;
 
-    public VentanaHistorial(SessionController session, RuletaController ruletaController, ResultadoController resultadoController) {
+    public VentanaHistorial(SessionController session, RuletaController ruletaController,
+                            ResultadoController resultadoController) {
         this.session = session;
         this.ruletaController = ruletaController;
         this.resultadoController = resultadoController;
@@ -42,7 +43,8 @@ public class VentanaHistorial {
         panelSur.add(btnVolver);
 
         String nombreUsuario = session.getUsuarioActual() != null ? session.getUsuarioActual().getNombre() : "Usuario";
-        frame.add(new JLabel("Historial de partidas: " + nombreUsuario, SwingConstants.CENTER), BorderLayout.NORTH);
+        frame.add(new JLabel("Historial de partidas: " + nombreUsuario, SwingConstants.CENTER),
+                BorderLayout.NORTH);
         frame.add(scrollPane, BorderLayout.CENTER);
         frame.add(panelSur, BorderLayout.SOUTH);
 
