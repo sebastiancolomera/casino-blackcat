@@ -44,3 +44,6 @@ bin/
 ### Mac OS / Windows ###
 .DS_Store
 Thumbs.db
+
+### usuarios ###
+usuarios.dat
