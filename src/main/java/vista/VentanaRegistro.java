@@ -44,7 +44,8 @@ public class VentanaRegistro {
         String c = new String(txtClave.getPassword()).trim();
 
         if (n.isEmpty() || u.isEmpty() || c.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Todos los campos son obligatorios.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -55,7 +56,8 @@ public class VentanaRegistro {
             frame.dispose();
             new VentanaLogin(session).mostrarVentana();
         } else {
-            JOptionPane.showMessageDialog(frame, "El nombre de usuario '" + u + "' ya está en uso. Elige otro.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "El nombre de usuario '" + u +
+                    "' ya está en uso. Elige otro.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

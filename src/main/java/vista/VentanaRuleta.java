@@ -61,7 +61,8 @@ public class VentanaRuleta {
             }
 
             if (monto > ruletaController.getBalance()) {
-                JOptionPane.showMessageDialog(frame, "Saldo insuficiente. Tu balance es: " + ruletaController.getBalance(),
+                JOptionPane.showMessageDialog(frame, "Saldo insuficiente. Tu balance es: " +
+                                ruletaController.getBalance(),
                         "Apuesta Inválida", JOptionPane.WARNING_MESSAGE);
                 return;
             }

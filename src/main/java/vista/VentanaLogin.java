@@ -57,7 +57,8 @@ public class VentanaLogin {
             frame.dispose();
             new VentanaMenu(session).mostrarVentana();
         } else {
-            JOptionPane.showMessageDialog(frame, "Credenciales incorrectas.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Credenciales incorrectas.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 

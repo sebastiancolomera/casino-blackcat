@@ -61,7 +61,8 @@ public class VentanaPerfil {
     private void actualizarNombre() {
         String nuevoNombre = txtNombre.getText().trim();
         session.getUsuarioActual().setNombre(nuevoNombre);
-        JOptionPane.showMessageDialog(frame, "Nombre actualizado.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(frame, "Nombre actualizado.", "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
         actualizarDatos();
     }
 
@@ -72,7 +73,8 @@ public class VentanaPerfil {
                 ruletaController.depositar(monto);
                 txtDeposito.setText("");
                 actualizarDatos();
-                JOptionPane.showMessageDialog(frame, "Depósito exitoso.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Depósito exitoso.", "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(frame, "Monto inválido.", "Error", JOptionPane.ERROR_MESSAGE);
