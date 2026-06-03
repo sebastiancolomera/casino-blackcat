@@ -22,6 +22,8 @@ public class RuletaController {
         Resultado resultado = ruleta.jugar(apuesta);
         if (session.getUsuarioActual() != null) {
             session.getUsuarioActual().agregarResultado(resultado);
+            session.getUsuarioActual().setBalance(ruleta.getBalance());
+            session.guardarUsuarios();
         }
         return resultado;
     }
@@ -32,6 +34,10 @@ public class RuletaController {
 
     public void depositar(int monto) {
         ruleta.depositar(monto);
+        if (session.getUsuarioActual() != null) {
+            session.getUsuarioActual().setBalance(ruleta.getBalance());
+            session.guardarUsuarios();
+        }
     }
 
     public int getBalance() {
