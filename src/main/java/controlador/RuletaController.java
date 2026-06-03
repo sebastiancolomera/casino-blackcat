@@ -1,7 +1,7 @@
 package controlador;
 
 import modelo.Ruleta;
-import modelo.TipoApuesta;
+import modelo.ApuestaBase;
 import modelo.Resultado;
 
 public class RuletaController {
@@ -18,13 +18,8 @@ public class RuletaController {
         this.session = session;
     }
 
-    public Resultado jugar(int monto, TipoApuesta tipo) {
-        int numero = ruleta.girarRuleta();
-        boolean acierto = ruleta.evaluarResultado(numero, tipo);
-        ruleta.registrarResultado(numero, monto, acierto, tipo);
-
-        Resultado resultado = new Resultado(numero, monto, acierto, tipo);
-
+    public Resultado jugar(ApuestaBase apuesta) {
+        Resultado resultado = ruleta.jugar(apuesta);
         if (session.getUsuarioActual() != null) {
             session.getUsuarioActual().agregarResultado(resultado);
         }
