@@ -19,7 +19,7 @@ public class VentanaMenu {
 
     public VentanaMenu(SessionController session) {
         this.session = session;
-        this.ruletaController = new RuletaController(10000,session);
+        this.ruletaController = new RuletaController(session.getUsuarioActual().getBalance(), session);
         initUI();
     }
 
