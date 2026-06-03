@@ -42,33 +42,24 @@ public class Ruleta {
         return false;
     }
 
-    public boolean evaluarResultado(int numero, TipoApuesta tipo) {
-        if (numero == 0) {
-            return false;
-        }
-        if (tipo == TipoApuesta.ROJO) {
-            return esRojo(numero);
-        }
-        if (tipo == TipoApuesta.NEGRO) {
-            return !esRojo(numero);
-        }
-        if (tipo == TipoApuesta.PAR) {
-            return numero % 2 == 0;
-        }
-        if (tipo == TipoApuesta.IMPAR) {
-            return numero % 2 != 0;
-        }
-        return false;
+    private String colorDe(int numero) {
+        if (numero == 0) return "verde";
+        return esRojo(numero) ? "rojo" : "negro";
     }
 
-    public void registrarResultado(int numero, int apuesta, boolean acierto, TipoApuesta tipo) {
-        historial.add(new Resultado(numero, apuesta, acierto, tipo));
-
+    public Resultado jugar(ApuestaBase apuesta) {
+        int numero = girarRuleta();
+        String color = colorDe(numero);
+        boolean acierto = apuesta.acierta(numero, color);
         if (acierto) {
-            balance += apuesta;
+            balance += (int) apuesta.getMonto();
         } else {
-            balance -= apuesta;
+            balance -= (int) apuesta.getMonto();
         }
+
+        Resultado resultado = new Resultado(numero, (int) apuesta.getMonto(), acierto, apuesta.getEtiqueta());
+        historial.add(resultado);
+        return resultado;
     }
 
     public String getEstadisticas() {
