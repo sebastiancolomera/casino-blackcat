@@ -25,7 +25,7 @@ public class VentanaHistorial {
     }
 
     private void initUI() {
-        frame.setSize(450, 300);
+        frame.setSize(700, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout(10, 10));
