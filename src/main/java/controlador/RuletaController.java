@@ -3,6 +3,7 @@ package controlador;
 import modelo.Ruleta;
 import modelo.ApuestaBase;
 import modelo.Resultado;
+import modelo.RepositorioArchivo;
 
 public class RuletaController {
     private final Ruleta ruleta;
@@ -14,7 +15,8 @@ public class RuletaController {
     }
 
     public RuletaController(int saldoInicial, SessionController session) {
-        this.ruleta = new Ruleta(saldoInicial);
+        String usuario = session.getUsuarioActual().getNombre();
+        this.ruleta = new Ruleta(saldoInicial, new modelo.RepositorioArchivo("historial_" + usuario + ".csv"));
         this.session = session;
     }
 
