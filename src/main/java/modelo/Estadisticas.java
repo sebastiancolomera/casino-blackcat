@@ -12,8 +12,8 @@ public class Estadisticas {
 	private int rachaMaxima;
 	private String tipoMasJugado;
 
-	public Estadisticas(List<Resultado> historial) {
-		calcularMetricas(historial);
+	public Estadisticas(IRepositorioResultados repositorio) {
+		calcularMetricas(repositorio.obtenerTodos());
 	}
 
 	private void calcularMetricas(List<Resultado> historial) {
