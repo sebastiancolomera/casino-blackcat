@@ -14,7 +14,8 @@ public class VentanaEstadisticas {
     private final ResultadoController resultadoController;
     private final JButton botonVolver = new JButton("Volver al Menú");
 
-    public VentanaEstadisticas(SessionController session, RuletaController ruletaController, ResultadoController resultadoController) {
+    public VentanaEstadisticas(SessionController session, RuletaController ruletaController,
+                               ResultadoController resultadoController) {
         this.session = session;
         this.ruletaController = ruletaController;
         this.resultadoController = resultadoController;
@@ -46,7 +47,7 @@ public class VentanaEstadisticas {
         panelDatos.add(new JLabel("Racha Máxima:"));
         panelDatos.add(new JLabel(String.valueOf(stats.getRachaMaxima())));
         panelDatos.add(new JLabel("Apuesta Favorita:"));
-        String tipoFav = stats.getTipoMasJugado() != null ? stats.getTipoMasJugado().name() : "N/A";
+        String tipoFav = stats.getTipoMasJugado() != null ? stats.getTipoMasJugado() : "N/A";
         panelDatos.add(new JLabel(tipoFav));
 
         frame.add(panelDatos, BorderLayout.CENTER);

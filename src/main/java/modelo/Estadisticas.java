@@ -10,7 +10,7 @@ public class Estadisticas {
 	private int victorias;
 	private double porcentajeVictorias;
 	private int rachaMaxima;
-	private TipoApuesta tipoMasJugado;
+	private String tipoMasJugado;
 
 	public Estadisticas(List<Resultado> historial) {
 		calcularMetricas(historial);
@@ -30,7 +30,7 @@ public class Estadisticas {
 		this.victorias = 0;
 		int rachaActual = 0;
 
-		Map<TipoApuesta, Integer> conteoTipos = new HashMap<>();
+		Map<String, Integer> conteoTipos = new HashMap<>();
 		for (Resultado resultado : historial) {
 			if (resultado.isAcierto()) {
 				this.victorias++;
@@ -41,12 +41,12 @@ public class Estadisticas {
 			} else {
 				rachaActual = 0;
 			}
-			TipoApuesta tipo = resultado.getTipo();
+			String tipo = resultado.getTipo();
 			conteoTipos.put(tipo, conteoTipos.getOrDefault(tipo, 0) + 1);
 		}
 		this.porcentajeVictorias = (this.victorias * 100.0) / this.totalJugadas;
 		int maxApariciones = 0;
-		for (Map.Entry<TipoApuesta, Integer> entry : conteoTipos.entrySet()) {
+		for (Map.Entry<String, Integer> entry : conteoTipos.entrySet()) {
 			if (entry.getValue() > maxApariciones) {
 				maxApariciones = entry.getValue();
 				this.tipoMasJugado = entry.getKey();
@@ -70,8 +70,7 @@ public class Estadisticas {
 		return this.rachaMaxima;
 	}
 
-	public TipoApuesta getTipoMasJugado() {
+	public String getTipoMasJugado() {
 		return this.tipoMasJugado;
 	}
-
 }
