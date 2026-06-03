@@ -3,7 +3,11 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 import modelo.Resultado;
-import modelo.TipoApuesta;
+import modelo.ApuestaBase;
+import modelo.ApuestaRojo;
+import modelo.ApuestaNegro;
+import modelo.ApuestaPar;
+import modelo.ApuestaImpar;
 import controlador.RuletaController;
 import controlador.SessionController;
 
@@ -15,7 +19,7 @@ public class VentanaRuleta {
     private final JLabel lblResultado = new JLabel("Resultado: -");
     private final JLabel lblBalance = new JLabel("Balance: 0");
     private final JTextField txtMonto = new JTextField();
-    private final JComboBox<TipoApuesta> cmbTipo = new JComboBox<>(TipoApuesta.values());
+    private final JComboBox<String> cmbTipo = new JComboBox<>(new String[]{"ROJO", "NEGRO", "PAR", "IMPAR"});
     private final JButton btnJugar = new JButton("Girar Ruleta");
     private final JButton btnVolver = new JButton("Volver");
 
@@ -62,8 +66,15 @@ public class VentanaRuleta {
                 return;
             }
 
-            TipoApuesta tipo = (TipoApuesta) cmbTipo.getSelectedItem();
-            modelo.Resultado resultado = ruletaController.jugar(monto, tipo);
+            String seleccion = (String) cmbTipo.getSelectedItem();
+            ApuestaBase apuesta;
+            switch (seleccion) {
+                case "ROJO": apuesta = new ApuestaRojo(monto); break;
+                case "NEGRO": apuesta = new ApuestaNegro(monto); break;
+                case "PAR": apuesta = new ApuestaPar(monto); break;
+                default: apuesta = new ApuestaImpar(monto); break;
+            }
+            Resultado resultado = ruletaController.jugar(apuesta);
 
             lblNumero.setText("Número obtenido: " + resultado.getNumero());
             lblResultado.setText("Resultado: " + (resultado.isAcierto() ? "¡¡GANASTE!!" : "PERDISTE..."));
