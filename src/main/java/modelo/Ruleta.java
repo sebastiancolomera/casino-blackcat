@@ -1,21 +1,20 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Ruleta {
-    private final List<Resultado> historial;
+    private final IRepositorioResultados repositorio;
     private int balance = 0;
     private final Random rng = new Random();
     private final int[] numerosRojos = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
 
-    public Ruleta() {
-        this.historial = new ArrayList<>();
+    public Ruleta(IRepositorioResultados repositorio) {
+        this.repositorio = repositorio;
     }
 
-    public Ruleta(int saldoInicial) {
-        this.historial = new ArrayList<>();
+    public Ruleta(int saldoInicial, IRepositorioResultados repositorio) {
+        this.repositorio = repositorio;
         this.balance = saldoInicial;
     }
 
@@ -58,7 +57,7 @@ public class Ruleta {
         }
 
         Resultado resultado = new Resultado(numero, (int) apuesta.getMonto(), acierto, apuesta.getEtiqueta());
-        historial.add(resultado);
+        repositorio.agregar(resultado);
         return resultado;
     }
 
@@ -66,14 +65,14 @@ public class Ruleta {
         int apostado = 0;
         int aciertos = 0;
 
-        for (Resultado r : historial) {
+        for (Resultado r : repositorio.obtenerTodos()) {
             apostado += r.getApuesta();
             if (r.isAcierto()) {
                 aciertos++;
             }
         }
 
-        int cantidadJugadas = historial.size();
+        int cantidadJugadas = repositorio.obtenerTodos().size();
         double porcentaje = (cantidadJugadas == 0) ? 0 : (aciertos * 100.0) / cantidadJugadas;
 
         return "Rondas: " + cantidadJugadas + "\nTotal Apostado: " + apostado + "\nAciertos: " + aciertos
