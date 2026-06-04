@@ -53,7 +53,7 @@ public class VentanaLogin {
         Usuario usuario = session.login(u, p);
 
         if (usuario != null) {
-            JOptionPane.showMessageDialog(frame, "¡¡Bienvenido, " + usuario.getNombre() + "!!");
+            JOptionPane.showMessageDialog(frame, "¡¡Bienvenido " + usuario.getNombre() + "!!");
             frame.dispose();
             new VentanaMenu(session).mostrarVentana();
         } else {

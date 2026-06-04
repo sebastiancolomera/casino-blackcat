@@ -37,7 +37,7 @@ public class VentanaMenu {
 
         Usuario usuario = session.getUsuarioActual();
         String nombre = (usuario != null) ? usuario.getNombre() : "Invitado";
-        JLabel mensaje = new JLabel("Bienvenido, " + nombre, SwingConstants.CENTER);
+        JLabel mensaje = new JLabel("Bienvenido " + nombre, SwingConstants.CENTER);
 
         JPanel panelBotones = new JPanel(new java.awt.GridLayout(5, 1, 10, 10));
         panelBotones.add(btnJugar);
