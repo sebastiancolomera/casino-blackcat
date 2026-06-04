@@ -31,7 +31,7 @@ java -jar target/casino-blackcat-1.0.0.jar
 
 ## Diagrama de clases
 
-![Diagrama de clases - Iteración 08](src/main/resources/Imagenes/diagrama_lab08.png)
+![Diagrama de clases - Iteración 08](src/main/resources/diagrama_lab08.png)
 
 ## Iteraciones
 
