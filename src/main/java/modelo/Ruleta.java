@@ -14,6 +14,9 @@ public class Ruleta {
     }
 
     public Ruleta(int saldoInicial, IRepositorioResultados repositorio) {
+        if (saldoInicial < 0) {
+            throw new IllegalArgumentException("Saldo inicial inválido");
+        }
         this.repositorio = repositorio;
         this.balance = saldoInicial;
     }
