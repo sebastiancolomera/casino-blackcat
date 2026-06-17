@@ -53,6 +53,9 @@ public class Ruleta {
         if (apuesta == null) {
             throw new IllegalArgumentException("Apuesta requerida");
         }
+        if (apuesta.getMonto() > balance) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
         int numero = girarRuleta();
         String color = colorDe(numero);
         boolean acierto = apuesta.acierta(numero, color);
