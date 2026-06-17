@@ -14,4 +14,12 @@ public class RuletaTest {
         );
         assertEquals("Saldo inicial inválido", ex.getMessage());
     }
+
+    @Test
+    void depositoValidoIncrementaSaldo(){
+        IRepositorioResultados repo = new RepositorioEnMemoria();
+        Ruleta ruleta = new Ruleta(500, repo);
+        ruleta.depositar(200);
+        assertEquals(700, ruleta.getBalance());
+    }
 }
