@@ -9,10 +9,16 @@ Aplicación de escritorio que simula un casino con ruleta, desarrollada en Java 
 - Maven
 
 ## Estructura del proyecto
+```
 src/main/java/
 ├── controlador/    # SessionController, RuletaController, ResultadoController
 ├── modelo/         # Lógica de negocio, apuestas, repositorios
 └── vista/          # Ventanas Swing
+
+src/test/java/
+├── controlador/    # SessionControllerTest
+└── modelo/         # RuletaTest, EstadisticasTest
+```
 
 ## Funcionalidades
 
@@ -45,3 +51,4 @@ java -jar target/casino-blackcat-1.0.0.jar
 | 06 | Round-Trip con Visual Paradigm y módulo de estadísticas |
 | 07 | Herencia y polimorfismo en jerarquía de apuestas |
 | 08 | Interfaz `IRepositorioResultados` y principio DIP |
+| 09 | Pruebas unitarias con JUnit 5 |
