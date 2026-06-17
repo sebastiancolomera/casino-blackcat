@@ -34,4 +34,17 @@ public class RuletaTest {
         );
         assertEquals("Apuesta requerida", ex.getMessage());
     }
+
+    @Test
+    void jugarRechazaApuestaConMontoMayorAlSaldo(){
+        IRepositorioResultados repo = new RepositorioEnMemoria();
+        Ruleta ruleta = new Ruleta(100, repo);
+        ApuestaBase apuesta = new ApuestaRojo(500);
+
+        IllegalArgumentException ex  = assertThrows(
+                IllegalArgumentException.class,
+                () -> ruleta.jugar(apuesta)
+        );
+        assertEquals("Saldo insuficiente", ex.getMessage());
+    }
 }
