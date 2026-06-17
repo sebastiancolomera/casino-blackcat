@@ -14,6 +14,9 @@ public class Ruleta {
     }
 
     public Ruleta(int saldoInicial, IRepositorioResultados repositorio) {
+        if (saldoInicial < 0) {
+            throw new IllegalArgumentException("Saldo inicial inválido");
+        }
         this.repositorio = repositorio;
         this.balance = saldoInicial;
     }
@@ -47,6 +50,12 @@ public class Ruleta {
     }
 
     public Resultado jugar(ApuestaBase apuesta) {
+        if (apuesta == null) {
+            throw new IllegalArgumentException("Apuesta requerida");
+        }
+        if (apuesta.getMonto() > balance) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
         int numero = girarRuleta();
         String color = colorDe(numero);
         boolean acierto = apuesta.acierta(numero, color);

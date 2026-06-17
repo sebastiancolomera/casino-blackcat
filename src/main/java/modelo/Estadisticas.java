@@ -26,12 +26,16 @@ public class Estadisticas {
 			return;
 		}
 
-		this.totalJugadas = historial.size();
+		this.totalJugadas = 0;
 		this.victorias = 0;
 		int rachaActual = 0;
 
 		Map<String, Integer> conteoTipos = new HashMap<>();
 		for (Resultado resultado : historial) {
+			if (resultado == null) {
+				continue;
+			}
+			this.totalJugadas++;
 			if (resultado.isAcierto()) {
 				this.victorias++;
 				rachaActual++;
