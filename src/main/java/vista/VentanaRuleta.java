@@ -55,7 +55,7 @@ public class VentanaRuleta {
         try {
             int monto = Integer.parseInt(txtMonto.getText());
             if (monto <= 0) {
-                JOptionPane.showMessageDialog(frame, "La apuesta debe ser mayor o igual a 0.",
+                JOptionPane.showMessageDialog(frame, "La apuesta debe ser mayor a 0.",
                         "Apuesta Inválida", JOptionPane.WARNING_MESSAGE);
                 return;
             }
