@@ -60,6 +60,9 @@ public class SessionController {
     }
 
     public boolean registro(String username, String password, String nombre) {
+        if (username == null || password == null) {
+            return false;
+        }
         for (Usuario u : usuarios) {
             if (u.getUsername().equals(username)) {
                 return false;
